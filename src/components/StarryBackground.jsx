@@ -17,69 +17,39 @@ const StarryBackground = () => {
     resizeCanvas();
 
     const stars = [];
-    const shootingStars = [];
-    const numStars = 200;
+    const numStars = 250;
 
     for (let i = 0; i < numStars; i += 1) {
       stars.push({
-        x: Math.random() * canvas.width,
-        y: Math.random() * canvas.height,
-        radius: Math.random() * 1.5,
-        speed: Math.random() * 0.2 + 0.05,
+        angle: Math.random() * Math.PI * 2,
+        radius: Math.random() * (Math.max(window.innerWidth, window.innerHeight) * 0.8),
+        speed: Math.random() * 0.0005 + 0.0002,
+        size: Math.random() * 2 + 1,
         opacity: Math.random(),
-        color: Math.random() > 0.8 ? '#64ffda' : '#8892b0'
+        color: Math.random() > 0.8 ? '#64ffda' : '#ffffff'
       });
     }
 
     const animate = () => {
       ctx.clearRect(0, 0, canvas.width, canvas.height);
+      const cx = canvas.width / 2;
+      const cy = canvas.height / 2;
 
       stars.forEach((star) => {
         const updatedStar = star;
-        updatedStar.y -= updatedStar.speed;
-        if (updatedStar.y < 0) updatedStar.y = canvas.height;
+        updatedStar.angle += updatedStar.speed;
+        const x = cx + Math.cos(updatedStar.angle) * updatedStar.radius;
+        const y = cy + Math.sin(updatedStar.angle) * updatedStar.radius;
 
         ctx.beginPath();
-        ctx.arc(updatedStar.x, updatedStar.y, updatedStar.radius, 0, Math.PI * 2);
-        ctx.fillStyle = `rgba(${updatedStar.color === '#64ffda' ? '100, 255, 218' : '136, 146, 176'}, ${updatedStar.opacity})`;
+        ctx.arc(x, y, updatedStar.size, 0, Math.PI * 2);
+        ctx.fillStyle = `rgba(${updatedStar.color === '#64ffda' ? '100, 255, 218' : '200, 210, 230'}, ${updatedStar.opacity})`;
         ctx.fill();
 
-        if (Math.random() > 0.99) {
-          updatedStar.opacity = Math.random();
+        if (Math.random() > 0.98) {
+          updatedStar.opacity = Math.random() * 0.7 + 0.3;
         }
       });
-
-      if (Math.random() < 0.02) {
-        shootingStars.push({
-          x: Math.random() * canvas.width,
-          y: Math.random() * (canvas.height / 2),
-          length: Math.random() * 80 + 10,
-          speed: Math.random() * 25 + 2,
-          angle: Math.PI / 4
-        });
-      }
-
-      for (let i = 0; i < shootingStars.length; i += 1) {
-        const star = shootingStars[i];
-
-        star.x += star.speed * Math.cos(star.angle);
-        star.y += star.speed * Math.sin(star.angle);
-
-        ctx.beginPath();
-        ctx.strokeStyle = 'rgba(100, 255, 218, 0.8)';
-        ctx.lineWidth = 2;
-        ctx.moveTo(star.x, star.y);
-        ctx.lineTo(
-          star.x - star.length * Math.cos(star.angle),
-          star.y - star.length * Math.sin(star.angle)
-        );
-        ctx.stroke();
-
-        if (star.x > canvas.width + 100 || star.y > canvas.height + 100) {
-          shootingStars.splice(i, 1);
-          i -= 1;
-        }
-      }
 
       animationFrameId = requestAnimationFrame(animate);
     };
@@ -92,7 +62,12 @@ const StarryBackground = () => {
     };
   }, []);
 
-  return <canvas ref={canvasRef} className="fixed top-0 left-0 w-full h-full pointer-events-none z-0 opacity-40" />;
+  return (
+    <canvas
+      ref={canvasRef}
+      className="fixed top-0 left-0 w-full h-full pointer-events-none z-0"
+    />
+  );
 };
 
 export default StarryBackground;

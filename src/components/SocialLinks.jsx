@@ -7,7 +7,7 @@ const SocialLinks = ({ className = '' }) => (
       href={personalInfo.github}
       target="_blank"
       rel="noreferrer"
-      className="text-slate-400 hover:text-teal-300 transition-all hover:-translate-y-1"
+      className="text-slate-400 hover:text-cyan-300 transition-all hover:-translate-y-1"
     >
       <Github size={24} />
     </a>
@@ -15,13 +15,13 @@ const SocialLinks = ({ className = '' }) => (
       href={personalInfo.linkedin}
       target="_blank"
       rel="noreferrer"
-      className="text-slate-400 hover:text-teal-300 transition-all hover:-translate-y-1"
+      className="text-slate-400 hover:text-cyan-300 transition-all hover:-translate-y-1"
     >
       <Linkedin size={24} />
     </a>
     <a
       href={`mailto:${personalInfo.email}`}
-      className="text-slate-400 hover:text-teal-300 transition-all hover:-translate-y-1"
+      className="text-slate-400 hover:text-cyan-300 transition-all hover:-translate-y-1"
     >
       <Mail size={24} />
     </a>

@@ -7,17 +7,14 @@
 }
 
 body {
-  background-color: #020c1b;
+  background: radial-gradient(circle at 20% 20%, rgba(74, 104, 255, 0.1), transparent 25%),
+    radial-gradient(circle at 80% 0%, rgba(92, 221, 255, 0.12), transparent 25%),
+    linear-gradient(180deg, #050c1f 0%, #060e26 50%, #04091a 100%);
   min-height: 100vh;
 }
 
 .glass-panel {
-  background: rgba(17, 34, 64, 0.4);
-  backdrop-filter: blur(12px);
-  -webkit-backdrop-filter: blur(12px);
-  border: 1px solid rgba(255, 255, 255, 0.05);
-  border-radius: 0.5rem;
-  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.25);
+  @apply bg-[#0b1533]/75 border border-white/10 shadow-glass backdrop-blur-md;
 }
 
 .glass-highlight {

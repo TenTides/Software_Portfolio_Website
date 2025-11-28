@@ -24,20 +24,23 @@ export default function App() {
   const [isLoading, setIsLoading] = useState(true);
 
   return (
-    <div className="relative min-h-screen bg-[#020c1b] selection:bg-teal-300 selection:text-[#020c1b] text-slate-400">
+    <div className="relative min-h-screen bg-[#050c1f] selection:bg-cyan-300 selection:text-[#050c1f] text-slate-300">
       <StarryBackground />
       <LoadingOverlay isLoading={isLoading} onComplete={() => setIsLoading(false)} />
 
       <div className={`relative z-10 ${isLoading ? 'pointer-events-none select-none' : ''}`}>
-        <motion.div className="fixed top-0 left-0 right-0 h-1 bg-teal-500 transform origin-left z-[60]" style={{ scaleX }} />
+        <motion.div
+          className="fixed top-0 left-0 right-0 h-1 bg-gradient-to-r from-cyan-400 via-sky-500 to-indigo-500 transform origin-left z-[60]"
+          style={{ scaleX }}
+        />
 
         <Navbar />
 
         <div className="fixed bottom-0 left-10 hidden lg:flex flex-col items-center gap-6 text-slate-400">
           <div className="flex flex-col gap-6 glass-panel p-3 rounded-full border border-white/10">
-            <a href={personalInfo.github} className="hover:text-teal-300 hover:-translate-y-1 transition-all"><Github size={20} /></a>
-            <a href={personalInfo.linkedin} className="hover:text-teal-300 hover:-translate-y-1 transition-all"><Linkedin size={20} /></a>
-            <a href="#projects" className="hover:text-teal-300 hover:-translate-y-1 transition-all"><Code2 size={20} /></a>
+            <a href={personalInfo.github} className="hover:text-cyan-300 hover:-translate-y-1 transition-all"><Github size={20} /></a>
+            <a href={personalInfo.linkedin} className="hover:text-cyan-300 hover:-translate-y-1 transition-all"><Linkedin size={20} /></a>
+            <a href="#projects" className="hover:text-cyan-300 hover:-translate-y-1 transition-all"><Code2 size={20} /></a>
           </div>
           <div className="w-[1px] h-24 bg-slate-600" />
         </div>
@@ -45,7 +48,7 @@ export default function App() {
         <div className="fixed bottom-0 right-10 hidden lg:flex flex-col items-center gap-6 text-slate-400">
           <a
             href={`mailto:${personalInfo.email}`}
-            className="font-mono text-sm tracking-widest hover:text-teal-300 hover:-translate-y-1 transition-all rotate-90 mb-24"
+            className="font-mono text-sm tracking-widest hover:text-cyan-300 hover:-translate-y-1 transition-all rotate-90 mb-24"
           >
             {personalInfo.email}
           </a>
